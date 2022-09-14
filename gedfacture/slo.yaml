@@ -10,7 +10,7 @@ objectives:
       displayName: ""
       pass:
         - criteria:
-            - <600
+            - <100
       warning:
         - criteria:
             - <=800
