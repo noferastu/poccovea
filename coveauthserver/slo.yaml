@@ -1,35 +1,51 @@
 spec_version: "1.0"
 filter: {}
 comparison:
-    compare_with: single_result
-    include_result_with_score: pass
+    compare_with: "single_result"
+    include_result_with_score: "pass"
     number_of_comparison_results: 1
-    aggregate_function: avg
+    aggregate_function: "avg"
 objectives:
-    - sli: response_time_p95
+    - sli: "response_time_p90"
       displayName: ""
       pass:
         - criteria:
-            - <600
+            - "<=450"
       warning:
         - criteria:
-            - <=800
+            - "<900"
       weight: 1
       key_sli: false
-    - sli: error_rate
+    - sli: "error_rate"
       displayName: ""
       pass:
         - criteria:
-            - <5
-      warning: []
+            - "<=0.25"
+      warning:
+        - criteria:
+            - "<0.5"
       weight: 1
       key_sli: false
-    - sli: throughput
+    - sli: "cpu_idle"
       displayName: ""
-      pass: []
-      warning: []
+      pass:
+        - criteria:
+            - ">=65"
+      warning:
+        - criteria:
+            - "<30"
+      weight: 0
+      key_sli: false
+    - sli: "webserver_requests"
+      displayName: ""
+      pass:
+        - criteria:
+            - ">=1061.15"
+      warning:
+        - criteria:
+            - "<1005.3"
       weight: 0
       key_sli: false
 total_score:
-    pass: 90%
-    warning: 75%
+    pass: "70%"
+    warning: "90%"
